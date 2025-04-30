@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useFirebase } from '../../hooks/useFirebase';
 import { StatsData } from '../../types/quiz';
 
@@ -19,13 +19,13 @@ export default function Stats() {
     }
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated && db) {
-      fetchStats();
+  const fetchStats = useCallback(async () => {
+    if (!db) {
+      console.error('Firebase не инициализирован');
+      setError('Ошибка инициализации базы данных');
+      return;
     }
-  }, [isAuthenticated, db]);
 
-  const fetchStats = async () => {
     try {
       const snapshot = await db.collection('results').get();
       const results = snapshot.docs.map((doc) => doc.data() as { result: string });
@@ -41,7 +41,13 @@ export default function Stats() {
       console.error('Ошибка при загрузке статистики:', err);
       setError('Ошибка загрузки статистики');
     }
-  };
+  }, [db]);
+
+  useEffect(() => {
+    if (isAuthenticated && db) {
+      fetchStats();
+    }
+  }, [isAuthenticated, db, fetchStats]);
 
   if (!isAuthenticated) return null;
 

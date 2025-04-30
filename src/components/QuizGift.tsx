@@ -36,7 +36,7 @@ export default function QuizGift() {
   return (
     <div role="dialog" aria-labelledby="gift-title">
       <h2 id="gift-title" className="text-2xl md:text-3xl font-bold text-[#FFF8E7] mb-4">
-        Ваш подарок!
+        Тройной кешбэк!
       </h2>
       <p className="text-lg text-[#FFF8E7] mb-6">
         Покажите QR-код на кассе, чтобы получить тройной кешбэк на любую покупку в магазине
@@ -60,7 +60,7 @@ export default function QuizGift() {
         )}
       </div>
       <p className="text-lg text-[#FFF8E7] mb-4">
-        или при заказе любимых продуктов через приложение по промокоду
+        или при заказе любимых продуктов через приложение по промокоду. Дейсвтует все майские.
       </p>
       <div className="flex flex-col items-center gap-4">
         <span 

@@ -1,13 +1,13 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { useFirebase } from '../../hooks/useFirebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 import { StatsData } from '../../types/quiz';
 
 export default function Stats() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [stats, setStats] = useState<StatsData | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const { db } = useFirebase();
 
   useEffect(() => {
     const enteredPassword = prompt('Введите пароль для доступа к статистике:');
@@ -21,8 +21,8 @@ export default function Stats() {
   }, []);
 
   const fetchStats = async () => {
-    if (!db) return;
     try {
+      const db = firebase.firestore();
       const snapshot = await db.collection('results').get();
       const results = snapshot.docs.map((doc) => doc.data() as { result: string });
       const statsData: StatsData = {

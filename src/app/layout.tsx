@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Мой проект",
-  description: "Описание моего проекта",
+  title: "Майский копиквиз",
+  description: "Узнайте, кто вы в этот майский праздник и получите приятный подарок!",
 };
 
 export default function RootLayout({

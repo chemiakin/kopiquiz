@@ -60,7 +60,7 @@ export default function QuizGift() {
         )}
       </div>
       <p className="text-lg text-[#FFF8E7] mb-4">
-        или при заказе любимых продуктов через приложение по промокоду. Дейсвтует все майские.
+        или при заказе любимых продуктов через приложение по промокоду. Действует все майские.
       </p>
       <div className="flex flex-col items-center gap-4">
         <span 
